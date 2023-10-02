@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+    /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set a background gradient and font family */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, #FF5733, #C70039, #900C3F, #581845, #2E294E, #00A896, #4F6D7A, #F2CC8F, #F26D21, #FC9D9A);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s cubic-bezier(0.4, 2.1, 0.1, 0.9) infinite;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Style the container */
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+/* Style the heading */
+h1 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* Style labels and input fields */
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #007BFF;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    transition: background-color 0.2s, transform 0.2s cubic-bezier(0.4, 2.1, 0.1, 0.9);
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Product</h1>
+        <form id="updateForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" value="<%= product.name %>" required>
+
+            <label for="productQuantity">Quantity:</label>
+            <input type="number" id="productQuantity" name="productQuantity" value="<%= product.quantity %>" required min="0">
+
+            <button type="submit" id="updateButton">Update</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            const productId = "<%= product._id %>";
+            const productName = document.getElementById('productName').value;
+            const productQuantity = document.getElementById('productQuantity').value;
+    
+            const updatedData = {
+                productName: productName,
+                productQuantity: productQuantity
+            };
+    
+            axios.put(`/${productId}/update`, updatedData)
+            .then(response => {
+                if (response.status === 200) {
+                    // Redirect to the product-info page after successful update
+                    window.location.href = '/product-info'; // Ensure this URL is correct
+                } else {
+                    console.error('Failed to update product');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });   
+    </script> 
+</body>
+</html>

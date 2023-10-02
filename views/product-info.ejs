@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <style>
+      /* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set a background color and font family */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden; /* Hide overflowing gradients */
+}
+
+/* Create an animation for background gradients */
+@keyframes gradientAnimation {
+  0% {
+    background: linear-gradient(to bottom, #FAD02E, #F76D57);
+  }
+  10% {
+    background: linear-gradient(to bottom, #F76D57, #36D1DC);
+  }
+  20% {
+    background: linear-gradient(to bottom, #36D1DC, #FAD02E);
+  }
+  30% {
+    background: linear-gradient(to bottom, #FAD02E, #B7A6F6);
+  }
+  40% {
+    background: linear-gradient(to bottom, #B7A6F6, #8C93A8);
+  }
+  50% {
+    background: linear-gradient(to bottom, #8C93A8, #FF847C);
+  }
+  60% {
+    background: linear-gradient(to bottom, #FF847C, #00C49A);
+  }
+  70% {
+    background: linear-gradient(to bottom, #00C49A, #FAD02E);
+  }
+  80% {
+    background: linear-gradient(to bottom, #FAD02E, #F76D57);
+  }
+  90% {
+    background: linear-gradient(to bottom, #F76D57, #36D1DC);
+  }
+  100% {
+    background: linear-gradient(to bottom, #36D1DC, #FAD02E);
+  }
+}
+
+/* Apply the animation to the body */
+body {
+  animation: gradientAnimation 20s linear infinite alternate;
+}
+
+/* Create a container with a shadow */
+.container {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+/* Style the heading */
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style labels and input fields */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Add a hover effect for the container */
+.container:hover {
+  transform: scale(1.03);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Information</h1>
+        
+        <form action="/send-data" method="POST">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+            
+            <label for="productQuantity">Quantity:</label>
+            <input type="number" id="productQuantity" name="productQuantity" required min="0">
+            
+            <button type="submit">Send</button>
+        </form>
+        
+    </div>
+</body>
+</html>
